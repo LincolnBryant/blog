@@ -77,7 +77,19 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+	sortFn: (a, b) => {
+		if (a.data?.frontmatter?.date && b.data?.frontmatter?.date) {
+		  const dateA = new Date(a.data.frontmatter.date);
+		  const dateB = new Date(b.data.frontmatter.date);
+		  
+		  // Use (dateB - dateA) for newest first, or (dateA - dateB) for oldest first
+		  return dateB.getTime() - dateA.getTime();
+		}
+		const d1 = new Date(a.dates?.created ?? 0).getTime()
+		const d2 = new Date(b.dates?.created ?? 0).getTime()
+		return d2 - d1
+	}),
   ],
   right: [],
 }

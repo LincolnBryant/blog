@@ -1,5 +1,7 @@
 ---
 title: Building a Debian-based HPC Home Lab
+draft: false
+date: 2025-09-01
 ---
 
 ## Setting up the Control plane
