@@ -19,8 +19,8 @@ best, even if you might be a bit behind on feature releases.
 
 ### Creating some Debian VMs
 
-From [[debian-vm-on-freebsd|Debian VM Installation on FreeBSD]], you should have a base
-Debian VM you clone to create the rest of your infrastructure.
+From [[debian-vm-on-freebsd|Debian VM Installation on FreeBSD]], you should
+have a base Debian VM you clone to create the rest of your infrastructure.
 
 I've since upgraded to Debian Sid, but the cloning process is straightforward.
 For our tiny cluster, I'll have one slurm control node running slurmctld, and
