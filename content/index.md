@@ -2,10 +2,9 @@
 title: Programs from Parallel Earths
 ---
 
-Hello! I'm a computer toucher wandering around the edges of computing,
-exploring technologies that haven't quite caught onto the mainstream. In this
-blog, I will write about FreeBSD, Erlang, DevOps, game development, and
-where-ever else the muse takes me.
+What would computing look like if we had made different choices? In this blog,
+I explore that alternate timeline: FreeBSD, Erlang, and other tools known for
+pragmatic engineering over hype. 
 
 * [[distributed-erlang-pt1|Distributed Erlang Notes (Part 1)]]
 * [[overworld-overview|Overworld - Post Mortem, sorta?]]
