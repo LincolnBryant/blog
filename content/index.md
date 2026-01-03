@@ -1,5 +1,6 @@
 ---
 title: Programs from Parallel Earths
+comments: false
 ---
 
 What would computing look like if we had made different choices? In this blog,
