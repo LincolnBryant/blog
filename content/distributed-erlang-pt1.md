@@ -95,7 +95,9 @@ pong
 Now, when doing this with Rebar3, it seems that my usual `rebar3 shell` stopped
 working. I don't really understand why, but the mitigation was to use releases
 instead. This is OK by me, but perhaps these mysteries are worth looking into
-later. In any case, it was a good opportunity to learn `relx` and I set up some profiles for my application. For my app, I put together something like this in my `rebar.config`:
+later. In any case, it was a good opportunity to learn `relx` and I set up some
+profiles for my application. For my app, I put together something like this in
+my `rebar.config`:
 
 ```
 {relx, [
@@ -123,6 +125,7 @@ The sys.config and vm.args are templatized, such that I have sensible defaults w
         {erl_epmd_node_listen_port, ${NODE_PORT:-4370}}
     ]}
 ].
+```
 
 Then, instead of my usual `rebar3 shell`, I run something like this:
 ```
@@ -133,4 +136,3 @@ And I can additionally change the port or default node name like so:
 ```
 NODE_NAME=foo NODE_PORT=12345 _build/default/rel/myapp/bin/myapp console
 ```
-
