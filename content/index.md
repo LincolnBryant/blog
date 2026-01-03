@@ -1,7 +1,11 @@
 ---
-title: Index
+title: Programs from Parallel Earths
 ---
-_Combining the past and the future into something not quite as good as either_
+
+Hello! I'm a computer toucher wandering around the edges of computing,
+exploring technologies that haven't quite caught onto the mainstream. In this
+blog, I will write about FreeBSD, Erlang, DevOps, game development, and
+where-ever else the muse takes me.
 
 * [[distributed-erlang-pt1|Distributed Erlang Notes (Part 1)]]
 * [[overworld-overview|Overworld - Post Mortem, sorta?]]
