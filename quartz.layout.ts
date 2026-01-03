@@ -89,7 +89,8 @@ export const defaultListPageLayout: PageLayout = {
 		const d1 = new Date(a.dates?.created ?? 0).getTime()
 		const d2 = new Date(b.dates?.created ?? 0).getTime()
 		return d2 - d1
-	}),
+	}
+    }),
   ],
   right: [],
 }
