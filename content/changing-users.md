@@ -58,7 +58,7 @@ Ehh... not really. While I certainly _can_ add `CAP_SETUID` to my binary, it's
 effectively exactly the same as giving my binary the `setuid` bit. Back to the
 drawing board!
 
-## Polkit
+## The polkit way
 
 More granular and application-focused than sudo, Policy Kit (polkit) is an
 expressive toolkit used for allowing privileged operations for unprivileged
