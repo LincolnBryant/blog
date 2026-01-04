@@ -104,19 +104,32 @@ export const defaultListPageLayout: PageLayout = {
       ],
     }),
     Component.Explorer({
-	sortFn: (a, b) => {
-		if (a.data?.frontmatter?.date && b.data?.frontmatter?.date) {
-		  const dateA = new Date(a.data.frontmatter.date);
-		  const dateB = new Date(b.data.frontmatter.date);
-		  
-		  // Use (dateB - dateA) for newest first, or (dateA - dateB) for oldest first
-		  return dateB.getTime() - dateA.getTime();
-		}
-		const d1 = new Date(a.dates?.created ?? 0).getTime()
-		const d2 = new Date(b.dates?.created ?? 0).getTime()
-		return d2 - d1
-	}
-    }),
+      sortFn: (a, b) => {
+        // If both are folders, sort alphabetically
+        if (!a.file && !b.file) {
+          return a.displayName.localeCompare(b.displayName, undefined, {
+            numeric: true,
+            sensitivity: "base",
+          })
+        }
+        
+        // Folders come before files
+        if (!a.file) return -1
+        if (!b.file) return 1
+        
+        // Get dates - check frontmatter first, then fall back to file dates
+        const aDate = a.file?.frontmatter?.date 
+          ? new Date(a.file.frontmatter.date).getTime()
+          : new Date(a.file?.dates?.created ?? 0).getTime()
+        
+        const bDate = b.file?.frontmatter?.date
+          ? new Date(b.file.frontmatter.date).getTime() 
+          : new Date(b.file?.dates?.created ?? 0).getTime()
+        
+        // Sort descending (newest first)
+        return bDate - aDate
+      }
+    })
   ],
   right: [],
 }
