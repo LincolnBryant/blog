@@ -4,10 +4,9 @@ comments: false
 ---
 
 What would computing look like if we had made different choices along the way?
-I explore that alternate timeline, writing about FreeBSD, Erlang, and other
-tools known for pragmatic engineering over hype. I write about my interests in
-using these technologies to explore distributed systems, DevOps, game
-development, and more.
+I write about technologies that took a different path -- FreeBSD, Erlang, and
+other tools known for pragmatic engineering over hype. Through this lens,  I
+explore distributed systems, DevOps, game development, and more.
 
 * [[distributed-erlang-pt1|Distributed Erlang Notes (Part 1)]]
 * [[overworld-overview|Overworld - Post Mortem, sorta?]]
