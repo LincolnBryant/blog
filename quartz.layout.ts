@@ -53,7 +53,33 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      sortFn: (a, b) => {
+        // If both are folders, sort alphabetically
+        if (!a.file && !b.file) {
+          return a.displayName.localeCompare(b.displayName, undefined, {
+            numeric: true,
+            sensitivity: "base",
+          })
+        }
+        
+        // Folders come before files
+        if (!a.file) return -1
+        if (!b.file) return 1
+        
+        // Get dates - check frontmatter first, then fall back to file dates
+        const aDate = a.file?.frontmatter?.date 
+          ? new Date(a.file.frontmatter.date).getTime()
+          : new Date(a.file?.dates?.created ?? 0).getTime()
+        
+        const bDate = b.file?.frontmatter?.date
+          ? new Date(b.file.frontmatter.date).getTime() 
+          : new Date(b.file?.dates?.created ?? 0).getTime()
+        
+        // Sort descending (newest first)
+        return bDate - aDate
+      }
+    })
   ],
   right: [
     Component.Graph(),
