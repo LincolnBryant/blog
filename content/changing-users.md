@@ -1,12 +1,12 @@
 ---
-title: Masters of Disguise - The art of changing users
-draft: true
+title: _Who are you?_ The New (UID) #2
+draft: false
 date: 2025-01-04
 ---
 
 I've been trying to understand how to safely change users when executing a task
-under Linux. I spent quite some time digging into, and discarding, a bunch of
-ways to do this. 
+under Linux (and other Unixes, for that matter). I spent quite some time
+researching and, in most cases, discarding several ways to do this.
 
 ## The traditional way - setuid()
 
@@ -60,17 +60,21 @@ drawing board!
 
 ## Polkit
 
-A bit more modern and powerful than sudo, Policy Kit (polkit) is an expressive
-toolkit used for allowing privileged operations for unprivileged processes.
+More granular and application-focused than sudo, Policy Kit (polkit) is an
+expressive toolkit used for allowing privileged operations for unprivileged
+processes. It's often used for desktop environments to escalate particular
+daemons or processes without giving them full root access. 
 
-### Systemd
+In my research, it seems that polkit is widely distributed _but_ not widely
+used among server installs, as many of these installations lack a desktop
+environment where polkit is typically used. polkit has also had its own share
+of CVEs, many of which come from the non-memory-safe nature of C, but it's
+generally considered robust and reliable today. I'm still trying to put my
+finger on the pulse of how administrators feel about polkit, and whether it's
+worth pursuing.
 
-If I'm going for a non-portable solution anyhow, I might as well lean into the
-tools Linux gives me. 
-
-systemd, the all-powerful Galactus of modern Linux administration, provides
-some intriguing possibilities:
-  * The ability to run 'transient units' - launched via the dbus API
-  * Granular policies to allow a particular user to launch units, via PolKit
-
-
+Polkit isn't exclusive to Linux, and has been ported to FreeBSD, OpenBSD and
+others chiefly for desktop environment integration. That's a plus, but the
+specific functionality I'm after is combined with systemd, which can use polkit
+as an authorization mechanism for making decisions about privileged operations.
+More on that in a later article.
