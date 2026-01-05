@@ -6,9 +6,9 @@ tags:
     - linux
 ---
 
-I've been trying to understand how to safely change users when executing a task
-under Linux (and other Unixes, for that matter). I spent quite some time
-researching and, in most cases, discarding several ways to do this.
+I've been trying to understand how to safely change users when a daemon
+executes a task under Linux (and other Unixes, for that matter). I spent quite
+some time researching and, in most cases, discarding several ways to do this.
 
 ## The traditional way - setuid()
 
@@ -59,6 +59,14 @@ to change users, ideally precluding the ability to change to the root user?
 Ehh... not really. While I certainly _can_ add `CAP_SETUID` to my binary, it's
 effectively exactly the same as giving my binary the `setuid` bit. Back to the
 drawing board!
+
+## old school cool - the sudo way
+
+I would be remiss to not write about `sudo` here. However, I really feel that
+sudo is more of an administration tool rather than something that should be in
+the critical path of a service. While setuid and capabilities are assigned to
+binaries, sudo applies to users or groups. Presumably your daemon user would be
+using NOPASSWD, and essentially you end up in the same boat as setuid. 
 
 ## The polkit way
 
