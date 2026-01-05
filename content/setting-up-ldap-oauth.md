@@ -2,6 +2,8 @@
 title: Setting up Identity services for my home lab
 draft: false
 date: 2025-10-01
+tags:
+  - linux
 ---
 
 ## Background

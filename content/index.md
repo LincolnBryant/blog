@@ -1,6 +1,7 @@
 ---
 title: Programs from Parallel Earths
 comments: false
+date: 2025-08-01
 ---
 
 What would computing look like if we had made different choices along the way?
@@ -8,7 +9,7 @@ I write about technologies that took a different path -- FreeBSD, Erlang, and
 other tools known for pragmatic engineering over hype. Through this lens,  I
 explore distributed systems, DevOps, game development, and more.
 
-* [[changing-users|Who are you? The New (UID) Number 2]]
+* [[changing-users|Who are you? The New Number 2]]
 * [[distributed-erlang-pt1|Distributed Erlang Notes (Part 1)]]
 * [[overworld-overview|Overworld - Post Mortem, sorta?]]
 * [[setting-up-ldap-oauth|Adding LDAP and OAuth2 to my lab]]

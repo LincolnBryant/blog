@@ -1,6 +1,15 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
+export const sortByDate = (a: any, b: any) => {
+  // Access date from plugin data (assumes CreatedModifiedDate plugin is enabled)
+  const dateA = a.dates?.modified || a.dates?.created || new Date(0)
+  const dateB = b.dates?.modified || b.dates?.created || new Date(0)
+  
+  // Sort descending (newest first)
+  return dateB.getTime() - dateA.getTime()
+}
+
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
@@ -53,37 +62,12 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer({
-      sortFn: (a, b) => {
-        // If both are folders, sort alphabetically
-        if (!a.file && !b.file) {
-          return a.displayName.localeCompare(b.displayName, undefined, {
-            numeric: true,
-            sensitivity: "base",
-          })
-        }
-        
-        // Folders come before files
-        if (!a.file) return -1
-        if (!b.file) return 1
-        
-        // Get dates - check frontmatter first, then fall back to file dates
-        const aDate = a.file?.frontmatter?.date 
-          ? new Date(a.file.frontmatter.date).getTime()
-          : new Date(a.file?.dates?.created ?? 0).getTime()
-        
-        const bDate = b.file?.frontmatter?.date
-          ? new Date(b.file.frontmatter.date).getTime() 
-          : new Date(b.file?.dates?.created ?? 0).getTime()
-        
-        // Sort descending (newest first)
-        return bDate - aDate
-      }
-    })
+    Component.DesktopOnly(Component.TableOfContents()),
+    Component.RecentNotes()
   ],
   right: [
     Component.Graph(),
-    Component.DesktopOnly(Component.TableOfContents()),
+    Component.Explorer({ sortFn: sortByDate }),
     Component.Backlinks(),
   ],
 }
@@ -103,33 +87,7 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer({
-      sortFn: (a, b) => {
-        // If both are folders, sort alphabetically
-        if (!a.file && !b.file) {
-          return a.displayName.localeCompare(b.displayName, undefined, {
-            numeric: true,
-            sensitivity: "base",
-          })
-        }
-        
-        // Folders come before files
-        if (!a.file) return -1
-        if (!b.file) return 1
-        
-        // Get dates - check frontmatter first, then fall back to file dates
-        const aDate = a.file?.frontmatter?.date 
-          ? new Date(a.file.frontmatter.date).getTime()
-          : new Date(a.file?.dates?.created ?? 0).getTime()
-        
-        const bDate = b.file?.frontmatter?.date
-          ? new Date(b.file.frontmatter.date).getTime() 
-          : new Date(b.file?.dates?.created ?? 0).getTime()
-        
-        // Sort descending (newest first)
-        return bDate - aDate
-      }
-    })
+    Component.Explorer()
   ],
   right: [],
 }

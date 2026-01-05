@@ -1,7 +1,9 @@
 ---
-title: Who are you? The New (UID) Number 2
+title: Who are you? The New Number 2
 draft: false
-date: 2025-01-04
+date: 2026-01-04
+tags:
+    - linux
 ---
 
 I've been trying to understand how to safely change users when executing a task
