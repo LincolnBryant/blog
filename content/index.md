@@ -4,10 +4,10 @@ comments: false
 date: 2025-08-01
 ---
 
-What would computing look like if spent our energies on pragmatism over hype?
-Sometimes I write here about technologies off the beaten path like FreeBSD,
-Erlang, and more. You can read my musings on DevOps, Game development, and
-distributed systems, as well as peruse my notes on more pedestrian things.
+What would computing look like if we focused on pragmatism over hype? I write
+about technologies off the beaten path like FreeBSD, Erlang, and LÖVE. Here you
+will find my my musings on DevOps, distributed systems, game development and
+other things.
 
 * [[erlang-eqwalizer|My Very Specific And Uninteresting Erlang Development Environment]]
 * [[changing-users|Who are you? The New Number 2]]
