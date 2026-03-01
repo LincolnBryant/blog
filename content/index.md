@@ -1,5 +1,5 @@
 ---
-title: Programs from Parallel Earths
+title: programs from parallel earths
 comments: false
 date: 2025-08-01
 ---
