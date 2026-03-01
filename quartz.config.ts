@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "computing on the far side",
+    pageTitle: "programs from parallel earths",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
