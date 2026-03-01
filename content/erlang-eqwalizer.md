@@ -60,7 +60,7 @@ nnoremap <C-s> :call ToggleSignColumn()<CR>
 
 It turns out that Ctrl-s is one of the only unbound-by-default key combinations in (neo)vim. Who knew.
 
-Oh, I guess I had to hack on the colorscheme configuration to irritate me less as well. The problem is that, by default, highlighting a paren also highlights its matching partner. The visual effect of this higlight gives the illusion that my cursor has jumped to the partner paren, which is _terribly_ confusing. 
+Oh, I guess I had to hack on the colorscheme configuration to irritate me less as well. The problem is that, by default, highlighting a paren also highlights its matching partner, while hiding the original paren! The visual effect of this higlight gives the illusion that my cursor has jumped to the partner paren, which is _terribly_ confusing. 
 
 ```
 " purply goodness
