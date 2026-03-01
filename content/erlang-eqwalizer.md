@@ -175,3 +175,14 @@ In my projects' rebar.config, I add eqwalizer as a dependency:
     %, the rest..
 ]}.  
 ```
+
+# ELP in Action!
+
+Here's some screenshots of the whole thing once setup. Function definitions:
+[[images/elp-signature.png]]
+
+Warning on unused variables:
+[[images/elp-warn.png]]
+
+Error on compiler issues:
+[[images/elp-error.png]]
