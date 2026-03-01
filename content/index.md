@@ -9,6 +9,7 @@ pragmatism over hype? In this blog, I explore about quietly successful,
 off-beat technologies like FreeBSD, Erlang, and more. Here you will also find
 my musings on distributed systems, DevOps, game development, and other topics.
 
+* [[erlang-eqwalizer|My Very Specific And Uninteresting Erlang Development Environment]]
 * [[changing-users|Who are you? The New Number 2]]
 * [[distributed-erlang-pt1|Distributed Erlang Notes (Part 1)]]
 * [[overworld-overview|Overworld - Post Mortem, sorta?]]
