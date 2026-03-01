@@ -29,28 +29,17 @@ productivity environment before I can get productive. This isn't the best, most
 optimal configuration for hacking Erlang, but [it works for me,
 alright?](https://www.youtube.com/watch?v=urcL86UpqZc)
 
-## tmux
-Fighting with TERM to get proper color support is a huge pain. Here's the incantation that works for me, I don't know why:
+# tmux
+Aside from occasionally fighting with `$TERM` to get full color support
+working, I don't really configure much in the way of tmux. One of my
+philosophies is the radical use of defaults, so I am never surprised when
+touching a new machine.
 
-```
-set-option -g default-terminal "screen-256color"
-set -ga terminal-overrides ",xterm-256color:Tc"
-```
-
-I want a large history buffer:
-
+That said, I do like to have a big history buffer on my development machine:
 ```
 set-option -g history-limit 100000
 ```
-
-I think something complained that these weren't set, so I set them:
-
-```
-set-option -sg escape-time 10
-set-option -g focus-events on
-```
-
-## neovim
+# neovim
 
 This is a bog-standard install with minimal stuff added. I'm still using the
 `.vim`-style configuration file because, despite having written a game in Lua
@@ -71,7 +60,7 @@ endfunction
 nnoremap <C-s> :call ToggleSignColumn()<CR>
 ```
 
-### Plug
+## Plug
 
 There are a hundred different plugin managers for vim. I don't have any great affinity toward any of them. I just picked the first one.
 
@@ -94,7 +83,7 @@ Once a vim session is running, run the following to actually set up the packages
 :PlugInstall
 ```
 
-### Conqueror of Completion
+## Conqueror of Completion
 
 I guess this isn't fashionable anymore, but [it works for me,
 alright?](https://www.youtube.com/watch?v=urcL86UpqZc)
@@ -127,7 +116,7 @@ The CoC configuration lives in `~/.config/nvim/coc-settings.json`
 }
 ```
 
-## Erlang Language Protocol
+# Erlang Language Protocol
 I feel dubious about how language servers are implemented in editors. On one
 hand, they are generally useful for doing things like providing an in-line
 definition of a given function signature and its return values. This helps to
@@ -163,7 +152,7 @@ cp target/release/elp ~/bin
 
 I wonder if you just shouldn't recurse submodules and [ignore the official instructions](https://whatsapp.github.io/erlang-language-platform/docs/get-started/install/)? I don't know. I'm too lazy to send a PR, sorry.
 
-## rebar3, eqwalizer
+# rebar3, eqwalizer
 
 In my projects' rebar.config, I add eqwalizer as a dependency:
 ```
@@ -180,10 +169,10 @@ In my projects' rebar.config, I add eqwalizer as a dependency:
 # ELP in Action!
 
 Here's some screenshots of the whole thing once setup. Function definitions:
-[[images/elp-signature.png]]
+![[images/elp-signature.png]]
 
 Warning on unused variables:
-[[images/elp-warn.png]]
+![[images/elp-warn.png]]
 
 Error on compiler issues:
-[[images/elp-error.png]]
+![[images/elp-error.png]]
