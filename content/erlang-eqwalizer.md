@@ -12,17 +12,17 @@ This is another one of those blog posts where I blind you with a boatload of
 technical nonsense because my brain is getting calcified and I can't remember
 things very well anymore. 
 
-Since Erlang isn't a tremendously ~mainstream~ language, information on how to
+Since Erlang isn't a tremendously mainstream language, information on how to
 set up a development environment is somewhat lacking -- especially if you're a
-(neo)vim user instead of one of those emacs lunatics ;) The gist of it is an
-amalgamation of:
+(neo)vim user instead of one of those emacs lunatics ;) The gist of my very
+personal configuration is an amalgamation of:
 
-    * FreeBSD
-    * tmux
-    * neovim
-    * Conqueror of Completion (CoC) 
-    * Erlang Language Protocol (ELP)
-    * rebar3 with eqwalizer plugin
+* FreeBSD
+* tmux
+* neovim
+* Conqueror of Completion (CoC) 
+* Erlang Language Protocol (ELP)
+* rebar3 with eqwalizer
 
 I'm not the kind of person that spends a tremendous amount of time improving my
 productivity environment before I can get productive. This isn't the best, most
