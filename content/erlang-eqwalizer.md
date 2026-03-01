@@ -43,9 +43,7 @@ set-option -g history-limit 100000
 
 This is a bog-standard install with minimal stuff added. I'm still using the
 `.vim`-style configuration file because, despite having written a game in Lua
-last year, I still don't know how to configure neovim in the canonical way. The vast majority of my config is simple, personal preferences, so I'll highlight only the 'special' things:
-
-When I'm writing code, I like having the sign column (aka the gutter) turned on to flag warnings and errors. I'm also fickle and easily irritated, so I have a button to turn it off. 
+last year, I still don't know how to configure neovim in the canonical way. The vast majority of my config is simple, personal preferences, so I'll highlight one of the only special things I do: When I'm writing code, I like having the sign column (aka the gutter) turned on to flag warnings and errors. I'm also fickle and easily irritated, so I have a button to turn it off, too.
 
 ```
 set signcolumn = yes
@@ -60,16 +58,36 @@ endfunction
 nnoremap <C-s> :call ToggleSignColumn()<CR>
 ```
 
+It turns out that Ctrl-s is one of the only unbound-by-default key combinations in (neo)vim. Who knew.
+
+Oh, I guess I had to hack on the colorscheme configuration to irritate me less as well. The problem is that, by default, highlighting a paren also highlights its matching partner. The visual effect of this higlight gives the illusion that my cursor has jumped to the partner paren, which is _terribly_ confusing. 
+
+```
+" purply goodness
+colorscheme zaibatsu
+" i like the gutter to be distinct from the rest of the colorscheme
+highlight SignColumn guibg=black
+" xix the damn paren highlighting in zaibatsu
+highlight MatchParen guifg=NONE guibg=#4a4a4a gui=bold cterm=bold,underline
+```
+
+Finally, I read a [great blog post](https://tonsky.me/blog/syntax-highlighting/) about syntax highlighting a few months ago, and while I don't agree with it totally I think the author makes some really strong arguments. I'm trying to reduce the visual noise of the stuff highlighted when editing Erlang as such:
+
+```
+" Don't highlight atoms
+highlight link erlangAtom Normal
+```
+
 ## Plug
 
-There are a hundred different plugin managers for vim. I don't have any great affinity toward any of them. I just picked the first one.
+There are a hundred different plugin managers for vim. I don't have any great affinity toward any of them. I just picked the first one I saw for the package I needed.
 
 To install:
 ```
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-In the config, add your stuff. I like Conqueror of Completion.
+Once it's setup in the vim autoload, add your packages. I like Conqueror of Completion.
 
 ```
 "plug stuff 
@@ -83,13 +101,14 @@ Once a vim session is running, run the following to actually set up the packages
 :PlugInstall
 ```
 
-## Conqueror of Completion
+## Conqueror of Completion (CoC)
 
-I guess this isn't fashionable anymore, but [it works for me,
-alright?](https://www.youtube.com/watch?v=urcL86UpqZc)
+I know my sense of humor is juvenile, but between y'all and the Code of Conduct
+pushers, you're killing me here. What an unfortunate acronym for a great tool.
 
-You have nodejs installed (additional-programming-langauge-to-run-this-shit
-count: 1) in order to use CoC.
+This is where we start to rapidly accumulate programming language runtimes in
+order to get anything done. First, you have to have nodejs installed in order
+to use CoC. Additional-programming-languages-needed-to-run-this-shit counter: 1.
 
 The CoC configuration lives in `~/.config/nvim/coc-settings.json`
 ```
@@ -116,6 +135,10 @@ The CoC configuration lives in `~/.config/nvim/coc-settings.json`
 }
 ```
 
+I have very simple characters for info, hints, and warnings. I think they're emoji by default which I despise. I don't remember what parameter hints are, but I turned them off because I didn't like them. Once again, [it works for me,
+alright?](https://www.youtube.com/watch?v=urcL86UpqZc)
+
+
 # Erlang Language Protocol
 I feel dubious about how language servers are implemented in editors. On one
 hand, they are generally useful for doing things like providing an in-line
@@ -125,10 +148,11 @@ highlighting can be majorly distracting Microsoft-inspired braindamage that
 completely ruins flow. It helps more than it hurts, I guess.
 
 To set it up, you'll need to have Rust, Java and Scala installed
-(additional-programming-language-needed-to-run-this-shit counter is now up to
-4). 
+(additional-programming-languages-needed-to-run-this-shit counter is now up to
+4, by the way). 
 
-The installation is honestly a bit broken, but after beating my head against the wall I can now say these are the Definitive instructions:
+The installation is honestly a bit broken, but after beating my head against
+the wall I can now say these are the Definitive instructions:
 
 ```
 # Clone ELP and submodules
@@ -150,7 +174,9 @@ cargo build --release
 cp target/release/elp ~/bin
 ```
 
-I wonder if you just shouldn't recurse submodules and [ignore the official instructions](https://whatsapp.github.io/erlang-language-platform/docs/get-started/install/)? I don't know. I'm too lazy to send a PR, sorry.
+I wonder if you just shouldn't recurse submodules and [ignore the official
+instructions](https://whatsapp.github.io/erlang-language-platform/docs/get-started/install/)?
+I don't know. I'm too lazy to send a PR, sorry.
 
 # rebar3, eqwalizer
 
