@@ -110,7 +110,8 @@ The CoC configuration lives in `~/.config/nvim/coc-settings.json`
   "diagnostic.warningSign": "!",
   "languageserver": {
     "erlang": {
-      "command": "elp-server",
+      "command": "elp",
+      "args: ["server"],
       "filetypes": ["erlang"],
       "settings": {
         "elp": {
