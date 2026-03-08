@@ -1,5 +1,5 @@
 ---
-title: Unattended Enterprise Linux and Fedora installs with bhyve
+title: Unattended Enterprise Linux and Fedora VM installs with bhyve
 draft: false  
 date: 2026-03-08
 tags:  
@@ -7,7 +7,7 @@ tags:
     - freebsd
     - kickstart
     - automation
-    - rhel
+    - linux
 ---
 
 Lately I've been tinkering with
@@ -24,11 +24,12 @@ tried. For instance, Debian preseeds lack conditional logic -- something I have
 direly needed for configuring complex disk setups, matching on labels or
 picking the smallest volume for rootfs, etc.
 
-Unhappily, the BSD/bhyve circles seem to hold the common wisdom that VM
-installation ought to be _clicky clicky_. That is to say, if you want to create
-a bhyve VM, you are encouraged to just use the existing templates and connect
-over VNC to install your machine. SACRILEGE, I say! My UNIX world is Old
-Testament: 80 column monochromatic terminals and plagues of locusts.
+Unhappily, users on the FreeBSD forums seem to have resigned themselves to
+believe VM installation must inherently be _clicky clicky_. That is to say, if
+you want to create a bhyve VM, you are encouraged to just use the existing
+templates and connect over VNC to install your machine. SACRILEGE, I say! My
+UNIX world is Old Testament: 80-column, monochromatic terminals and plagues of
+locusts.
 
 So, let's figure out how to do it (approximately) right.
 
@@ -45,7 +46,7 @@ vm create -t linux-grub-zvol -s 100G -m 16G -c 4 rocky10
 
 # Building the Kickstart file
 
-I will put the Kickstart together in pieces here. First some basics - use a text-based install, set localization up, and configure the network for a basic DHCP-style setup:
+I will put the Kickstart together in pieces here. You can essentially copy this section top-to-bottom into `ks.cfg` and put your own key in there. First some basics - use a text-based install, set localization up, and configure the network for a basic DHCP-style setup:
 ```
 #version=RHEL10
 # Installation
@@ -95,7 +96,7 @@ Here's the first bit of that:
 rootpw --lock
 
 # SSH key for root
-sshkey --username=root "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOfvV9Lu3GRS2Db0TLqMWwkBVjX63a5BcajD4SE6XnclIbp9K+Ii8uYbGYObsxy0bAI5OH6j0bgevla3a26jHoE= lincoln@heisenburgers"
+sshkey --username=root "ecdsa-sha2-nistp256 AAAA..."
 ```
 
 There's some bhyve-specific stuff I do in the disk configuration, namely I
@@ -228,6 +229,12 @@ Anaconda installer should complete installation on its own. Afterwards, you'll
 reboot into a root console like this:
 
 ```
+Rocky Linux 10.1 (Red Quartz)
+Kernel 6.12.0-124.40.1.el10_1.x86_64 on x86_64
+
+rocky10 login: root (automatic login)
+
+[root@rocky10 ~]#
 ```
 
 Chalk one up for the Old Testament.
