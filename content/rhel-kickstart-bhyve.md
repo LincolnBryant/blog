@@ -67,7 +67,7 @@ network --hostname=rocky10
 
 There's some bhyve-specific stuff I do in the disk configuration, namely I
 couldn't get things to work with a GPT formatted disk so I just stick to good
-ol' MBR. I want to experiemnt with having /var on a separate partition a well,
+ol' MBR. I want to experiment with having /var on a separate partition a well,
 so a full log filesystem won't crash the entire machine. N.b., you _must_ use
 something other than XFS for these partitions due to some bhyve
 incompatibilities. See
