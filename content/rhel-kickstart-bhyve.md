@@ -83,9 +83,10 @@ firewall --disabled
 
 For the root account, I pull a few tricks:
   * I lock the account, such that root has no password
-  * I add my SSH public key for the root account, so I can ssh as root when the VM comes up
-  * I prohibit password-based login for root in SSH
-  * Later on, you'll see that I set the getty to auto-login as root. If you've
+  * I add my SSH public key for the root account, so I can ssh as root when the
+    VM comes up
+  * Later in the file, you'll see I prohibit password-based login for root in SSH
+  * I also set the getty to auto-login as root. If you've
     got root on my FreeBSD hypervisor, you've effectively got root on the VM
     anyhow.
 
@@ -100,7 +101,7 @@ sshkey --username=root "ecdsa-sha2-nistp256 AAAA..."
 ```
 
 There's some bhyve-specific stuff I do in the disk configuration, namely I
-couldn't get things to work wit a GPT formatted disk so I just stick to good
+couldn't get things to work with a GPT formatted disk so I just stick to good
 ol' MBR. I want to experiemnt with having /var on a separate partition a well,
 so a full log filesystem won't crash the entire machine. N.b., you _must_ use
 something other than XFS for these partitions due to some bhyve
