@@ -9,6 +9,7 @@ about technologies off the beaten path like FreeBSD, Erlang, and LÖVE. Here you
 will find my my musings on DevOps, distributed systems, game development and
 other things.
 
+* [[rhel-kickstart-bhyve|Unattended Enterprise Linux and Fedora VM installs with bhyve]]
 * [[erlang-eqwalizer|My Very Specific And Uninteresting Erlang Development Environment]]
 * [[changing-users|Who are you? The New Number 2]]
 * [[distributed-erlang-pt1|Distributed Erlang Notes (Part 1)]]
