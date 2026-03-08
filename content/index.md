@@ -1,18 +1,16 @@
 ---
 title: programs from parallel earths
 comments: false
-date: 2025-08-01
 ---
 
-What would computing look like if we focused on pragmatism over hype? I write
-about technologies off the beaten path like FreeBSD, Erlang, and LÖVE. Here you
-will find my my musings on DevOps, distributed systems, game development and
-other things.
+How would computing be different if we focused on pragmatism over promo
+packets? What if we built stuff for fun instead of being strangled by
+enshittification and grindset assholes wringing every last dime out of
+technology? That's the stuff I write about.
+
+Here are some recent entries:
 
 * [[rhel-kickstart-bhyve|Unattended Enterprise Linux and Fedora VM installs with bhyve]]
 * [[erlang-eqwalizer|My Very Specific And Uninteresting Erlang Development Environment]]
 * [[changing-users|Who are you? The New Number 2]]
 * [[distributed-erlang-pt1|Distributed Erlang Notes (Part 1)]]
-* [[setting-up-ldap-oauth|Adding LDAP and OAuth2 to my lab]]
-* [[preparing-a-debian-homelab|Building a Debian-based HPC Home Lab]]
-* [[debian-vm-on-freebsd|Debian VM Installation on FreeBSD]]
