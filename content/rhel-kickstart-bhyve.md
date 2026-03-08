@@ -37,7 +37,7 @@ So, let's figure out how to do it (approximately) right.
 First thing's first, I download the ISO and create a new VM. I assume bhyve is
 already configured and using ZFS etc etc.
 
-```
+```bash
 # Mirror the VM locally
 vm iso https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.1-x86_64-boot.iso
 # Create the VM with e.g. 100GB root disk, 16GB RAM, 4 CPUs
@@ -168,9 +168,9 @@ unattended install. I like this method because I can keep all of the files
 needed to configure my VM together after I forget how to do this in a month or
 so.
 
-To create and mount the OEMDRV image
+To create and mount the OEMDRV image:
 
-```
+```bash
 truncate -s 32m ks.img 
 mdconfig -a -t vnode -f ks.img        # -> md0
 newfs_msdos -F 16 -L OEMDRV /dev/md0
@@ -179,7 +179,7 @@ mount -t msdosfs /dev/md0 /tmp/oemdrv
 ```
 
 Once it's mounted, copy in the kickstart and umount/detach the image:
-```
+```bash
 cp ks.cfg /tmp/oemdrv/
 umount /tmp/oemdrv
 mdconfig -d -u md0
@@ -219,7 +219,7 @@ grub_run_dir="/boot/grub2"
 
 _Finally_, we can install this machine. Run the following, kick back, and relax:
 
-```
+```bash
 vm install -f rocky10 Rocky-10.1-x86_64-boot.iso
 ```
 
