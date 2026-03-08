@@ -66,11 +66,9 @@ network --hostname=rocky10
 I think selinux adds no practical value to most Enterprise Linux or Fedora
 installs, sorry. There are much less brain-damaged solutions like
 [pledge(2)](https://man.openbsd.org/pledge.2) and
-[unveil(2)](https://man.openbsd.org/unveil.2) in the BSD world.
-
-I also turn off the firewall because I'm lazy and it's a home lab. But
-honestly, systemd-firewalld is pretty good so feel free to leave it on if you
-prefer.
+[unveil(2)](https://man.openbsd.org/unveil.2) in the BSD world. I also turn off
+the firewall because I'm lazy and it's a home lab. But honestly,
+systemd-firewalld is pretty good so feel free to leave it on if you prefer.
 
 Overall, you should do whatever makes the most sense in your environment -- I
 won't judge.
