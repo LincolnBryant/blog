@@ -10,6 +10,8 @@ tags:
     - linux
 ---
 
+# Intro
+
 Lately I've been tinkering with
 [bootc](https://developers.redhat.com/articles/2024/09/24/bootc-getting-started-bootable-containers)
 and found myself in need of having an unattended VM installation
