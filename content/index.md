@@ -6,9 +6,10 @@ comments: false
 How would computing be different if we focused on pragmatism over promo
 packets? What if we built stuff for fun instead of being strangled by
 enshittification and grindset assholes wringing every last dime out of
-technology? That's the stuff I write about.
+technology? 
 
-Here are some recent entries:
+This is what I write to remember, this is what write to feel purpose. Here are
+some recent entries:
 
 * [[rhel-kickstart-bhyve|Unattended Enterprise Linux and Fedora VM installs with bhyve]]
 * [[erlang-eqwalizer|My Very Specific And Uninteresting Erlang Development Environment]]
