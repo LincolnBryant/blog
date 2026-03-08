@@ -65,41 +65,6 @@ network --bootproto=dhcp --device=link --activate
 network --hostname=rocky10
 ```
 
-I think selinux adds no practical value to most Enterprise Linux or Fedora
-installs, sorry. There are much less brain-damaged solutions like
-[pledge(2)](https://man.openbsd.org/pledge.2) and
-[unveil(2)](https://man.openbsd.org/unveil.2) in the BSD world. I also turn off
-the firewall because I'm lazy and it's a home lab. But honestly,
-systemd-firewalld is pretty good so feel free to leave it on if you prefer.
-
-Overall, you should do whatever makes the most sense in your environment -- I
-won't judge.
-
-```
-# Security
-selinux --disabled
-firewall --disabled
-```
-
-For the root account, I pull a few tricks:
-  * I lock the account, such that root has no password
-  * I add my SSH public key for the root account, so I can ssh as root when the
-    VM comes up
-  * Later in the file, you'll see I prohibit password-based login for root in SSH
-  * I also set the getty to auto-login as root. If you've
-    got root on my FreeBSD hypervisor, you've effectively got root on the VM
-    anyhow.
-
-Here's the first bit of that:
-
-```
-# Root account
-rootpw --lock
-
-# SSH key for root
-sshkey --username=root "ecdsa-sha2-nistp256 AAAA..."
-```
-
 There's some bhyve-specific stuff I do in the disk configuration, namely I
 couldn't get things to work with a GPT formatted disk so I just stick to good
 ol' MBR. I want to experiemnt with having /var on a separate partition a well,
@@ -108,7 +73,6 @@ something other than XFS for these partitions due to some bhyve
 incompatibilities. See
 [here](https://github.com/grehan-freebsd/grub2-bhyve/issues/8) for the open
 issue.
-
 ```
 # Disk
 zerombr
@@ -132,18 +96,50 @@ vim-enhanced
 %end
 ```
 
-Here's where I follow-up on the root business to configure SSH and the serial console. 
+I think selinux adds no practical value to most Enterprise Linux or Fedora
+installs, sorry. There are much less brain-damaged solutions like
+[pledge(2)](https://man.openbsd.org/pledge.2) and
+[unveil(2)](https://man.openbsd.org/unveil.2) in the BSD world. I also turn off
+the firewall because I'm lazy and it's a home lab. But honestly,
+systemd-firewalld is pretty good so feel free to leave it on if you prefer.
 
-There's also a very important trick to fix up the bootloader! By default, grub
-uses BLS (Boot Loader Specification) to dynamically generate the grub entries.
-As far as I can tell, that doesn't work with bhyve-grub either. So we just turn
-it off and regenerate the config before rebooting into the installed system.
+Overall, you should do whatever makes the most sense in your environment -- I
+won't judge.
+
+```
+# Security
+selinux --disabled
+firewall --disabled
+services --enabled=sshd
+```
+
+For the root account, I pull a few tricks:
+  * I lock the account, such that root has no password
+  * I add my SSH public key for the root account, so I can ssh as root when the
+    VM comes up
+  * I also set the getty to auto-login as root. If you've
+    got root on my FreeBSD hypervisor, you've effectively got root on the VM
+    anyhow.
+
+Here's the first bit of that:
+
+```
+# Root account
+rootpw --lock
+
+# SSH key for root
+sshkey --username=root "ecdsa-sha2-nistp256 AAAA..."
+```
+
+In post, we enable the autologin for root and apply a very important trick to
+fix up the bootloader. By default, grub uses BLS (Boot Loader Specification) to
+dynamically generate the grub entries. As far as I can tell, that doesn't work
+with bhyve-grub either. So we just turn it off and regenerate the config before
+rebooting into the installed system.
 
 ```
 # Services
 %post
-systemctl enable sshd
-echo 'PermitRootLogin prohibit-password' >> /etc/ssh/sshd_config
 
 # Auto-login root on console
 mkdir -p /etc/systemd/system/serial-getty@ttyS0.service.d/
